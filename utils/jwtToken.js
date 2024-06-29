@@ -1,4 +1,8 @@
 export const sendToken = (user, statusCode, res, message) => {
+   
+  
+  
+  try {
     const token = user.getJWTToken();
     const options = {
       expires: new Date(
@@ -13,5 +17,13 @@ export const sendToken = (user, statusCode, res, message) => {
       message,
       token,
     });
-  };
-  
+    
+  } catch (error) {
+    console.error('Error in sendToken:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Token generation failed',
+    });
+  }
+    
+  }
