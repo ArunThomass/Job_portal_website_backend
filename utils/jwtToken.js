@@ -1,7 +1,4 @@
 export const sendToken = (user, statusCode, res, message) => {
-   
-  
-  
   try {
     const token = user.getJWTToken();
     const options = {

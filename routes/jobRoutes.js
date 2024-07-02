@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-router.get("/getall", getAllJobs);
+router.get("/getall", isAuthenticated, getAllJobs);
 router.post("/post", isAuthenticated, postJob);
 router.get("/getmyjobs", isAuthenticated, getMyJobs);
 router.put("/update/:id", isAuthenticated, updateJob);
