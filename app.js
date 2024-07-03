@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv from "dotenv"
+import { config } from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import jobRouter from "./routes/jobRoutes.js";
@@ -11,7 +11,7 @@ import fileUpload from "express-fileupload";
 import cloudinary from "cloudinary";
 
 const app = express();
-dotenv.config({ path: "./config/config.env" })
+config({ path: "./config/config.env" });
 
 app.use(
     cors({
@@ -31,15 +31,13 @@ app.use(
       tempFileDir: "/tmp/",
     })
   );
-
-  app.use('/api/v1/user', userRouter);
+  app.use("/api/v1/user", userRouter);
   app.use("/api/v1/application", applicationRouter);
   app.use("/api/v1/job", jobRouter);
-
   dbConnection();
   app.use(errorMiddleware);
 
-  cloudinary.config({
+  cloudinary.v2.config({
     cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
     api_key: process.env.CLOUDINARY_CLIENT_API,
     api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
