@@ -43,7 +43,7 @@ app.use(
     api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
   });
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
