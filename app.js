@@ -15,7 +15,7 @@ config({ path: "./config/config.env" });
 
 app.use(
     cors({
-      origin: [process.env.FRONTEND_URL],
+      origin: process.env.FRONTEND_URL,
       methods: ["GET", "POST", "DELETE", "PUT"],
       credentials: true,
     })
@@ -43,7 +43,7 @@ app.use(
     api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
   });
 
-const port = process.env.PORT
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
